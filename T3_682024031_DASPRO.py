@@ -1,0 +1,68 @@
+print('Selamat datang di Kupi')
+print('Get discount 30% for minimum order 50K')
+print("--------------------------------------")
+
+nama = input('silahkan masukan Nama anda = ')
+
+menu = {
+    "Salad": 15000,
+    "Americano": 20000,
+    "Latte": 18000,
+    "Cappucino": 22000,
+    "Nasgor": 15000,
+}    
+print("=========================================")
+print('==================Menu===================')
+print("=========================================")
+
+for i in menu:
+    print("daftar menu : ", i,"\t harga : Rp.", menu[i])
+
+pesanan = []
+total_bayar = 0
+
+while True:
+    beli = input("Masukkan menu yang ingin anda beli: ").title()
+    if beli not in menu:
+        print("Maaf menu tidak ada")
+        continue
+    
+    jumlah = int(input(f"Masukkan jumlah pembelian {beli}: "))
+    bayar = menu[beli] * jumlah
+    total_bayar += bayar
+    
+    pesanan.append({
+        "menu": beli,
+        "jumlah": jumlah,
+        "subtotal": bayar
+    })
+    
+    lanjut = input("Apakah ingin menambah pesanan lain? (y/n): ").lower()
+    if lanjut == 'n':
+        break
+
+
+if total_bayar > 50000:
+    diskon = total_bayar * 30/100
+    total_setelah_diskon = total_bayar - diskon
+else:
+    diskon = 0
+    total_setelah_diskon= total_bayar   
+
+
+print("==========Detail Pembayaran===========")
+print("--------------------------------------")
+print('HAI KUPIERS!!!')           
+print("Jalan Terbaik No. 1, Salatiga")
+print("--------------------------------------")
+
+for x in pesanan:
+    print(f"{x['menu']} x {x['jumlah']} = Rp. {x['subtotal']}")
+
+print("--------------------------------------")
+print(f"Subtotal = Rp. {total_bayar}")
+print(f"Diskon = Rp. {diskon}")
+print(f"Total = Rp. {total_setelah_diskon}")
+print("**************************************")
+print("Terimakasih telah berbelanja di Kupi!")
+print(f"Have a great day, {nama}!")
