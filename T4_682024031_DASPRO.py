@@ -13,14 +13,14 @@ menu = {
     "Americano": 20000,
     "Latte": 18000,
     "Cappucino": 22000,
-    "Nasgor": 15000,
+    "Nasi Goreng": 15000,
 }    
 print("=========================================")
 print('==================Menu===================')
 print("=========================================")
 
 for i in menu:
-    print("daftar menu : ", i,"\t harga : Rp.", menu[i])
+    print("daftar menu : ", i.ljust(15), "\tharga : Rp.", str(menu[i]).rjust(4))
 
 pesanan = [] #List untuk menyimpan pesanan
 total_bayar = 0 #variabel untuk menyimpan total harga pembelian
@@ -44,14 +44,21 @@ while True:
             "subtotal": bayar 
         })
         
-        lanjut = input("Apakah ingin menambah pesanan lain? (y/n): ").lower()
-        if lanjut == 'y':
-            continue
-        elif lanjut == 'n':
-            break
-
+        while True:  #agar user bisa memilih ingin menabah atau tidak
+            lanjut = input("Apakah ingin menambah pesanan lain? (y/n): ").lower()
+            if lanjut == 'y':
+                break  
+            elif lanjut == 'n':
+                break  
+            else:
+                print("Masukan hanya y/n!")
+        
+        if lanjut == 'n':
+            break  
+        
+        
     except ValueError:
-        print("Input yang dimasukkan bukan angka")
+        print("Masukan jumlah pesanan yang valid!")
         
 #untuk mengecek diskon
 if total_bayar > 50000:
@@ -67,9 +74,9 @@ print("--------------------------------------")
 print('HAI KUPIERS!!!')           
 print("Jalan Terbaik No. 1, Salatiga")
 print("--------------------------------------")
-
+#menampilkan pesanan dari list
 for x in pesanan:
-    print(f"{x['menu']} x {x['jumlah']} = Rp. {x['subtotal']}")
+    print(f"{x['menu']} = Rp. {menu[x['menu']]} x {x['jumlah']} = Rp. {x['subtotal']}")
 
 print("--------------------------------------")
 print(f"Subtotal = Rp. {total_bayar}")
@@ -78,5 +85,3 @@ print(f"Total = Rp. {total_setelah_diskon}")
 print("**************************************")
 print("Terimakasih telah berbelanja di Kupi!")
 print(f"Have a great day, {nama}!")
-
-
